@@ -2,8 +2,9 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
+from .forms import CustomUserCreationForm
 from django.contrib import messages
-from .forms import CustomUserCreationForm, ProfileForm
+from .forms import RequestForm
 from .models import Request
 
 def user_login(request):
@@ -46,32 +47,29 @@ def register(request):
 
 
 def profile(request):
-    user_requests = Request.objects.filter(user=request.user)
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Профиль успешно обновлён!')
-            return redirect('profile')
+    status = request.GET.get('status')
+
+    if status:
+        user_requests = Request.objects.filter(user=request.user, status=status)
     else:
-        form = ProfileForm(instance=request.user.profile)
+        user_requests = Request.objects.filter(user=request.user)
 
     return render(request, 'user/profile.html', {
-        'profile_form': form,
-        'user_requests': user_requests
+        'user_requests': user_requests,
+        'selected_status': status
     })
 
 
 def create_request(request):
     if request.method == 'POST':
-        form = Request(request.POST, request.FILES)
+        form = RequestForm(request.POST, request.FILES)
         if form.is_valid():
             request_instance = form.save(commit=False)
             request_instance.user = request.user
             request_instance.save()
             return redirect('profile')
     else:
-        form = Request()
+        form = RequestForm()
 
     return render(request, 'user/create_request.html', {
         'form': form
@@ -87,4 +85,3 @@ def delete_request(request, request_id):
         messages.error(request, 'Ошибка: заявку можно удалить только в статусе "Новая".')
 
     return redirect('profile')
-
