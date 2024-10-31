@@ -1,9 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 import re
-from .models import Request, Category
+from .models import Request, Category,Profile
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -82,3 +81,15 @@ class RequestForm(forms.ModelForm):
             if not photo.name.endswith(('.jpg', '.jpeg', '.png', '.bmp')):
                 raise forms.ValidationError('Недопустимый формат файла. Используйте jpg, jpeg, png или bmp.')
         return photo
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar']
+        widgets = {
+            'avatar': forms.ClearableFileInput(attrs={
+                'class': 'form-control-file',
+                'title': 'Выберите новый аватар',
+                'style': 'display: block;',
+            }),
+        }

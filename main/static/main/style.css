@@ -3,7 +3,7 @@
     padding: 0;
 }
 body{
-    background: darkgray;
+    background: white;
 }
 
 a{
@@ -128,6 +128,10 @@ main p{
     align-items: center;
 }
 
+.links:hover{
+    color: red;
+}
+
 .filter{
     align-self: flex-end;
     display: flex;
@@ -158,14 +162,22 @@ select::after {
 .request{
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
-    margin-top: 30px;
+    gap: 10%;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.request img{
+    width: 200px;
+    height: 200px;
 }
 
 .request h3{
     font-size: 30px;
 }
-
+.request li{
+    border: 2px solid black;
+}
 .request p{
     font-size: 20px;
     margin-bottom: 10px;
@@ -182,5 +194,4 @@ select::after {
     background-color: #000000;
     border: none;
 }
-
 
