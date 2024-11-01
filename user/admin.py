@@ -12,15 +12,18 @@ class RequestAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
 
-        if obj is not None:
+        if obj is not None:  # Проверяем, что объект существует
+            print(f"Статус заявки: {obj.status}")  # Выводим статус в консоль
 
+            # Проверка статуса для поля комментариев
             if obj.status == 'new':
-                form.base_fields['comment'].disabled = True
+                form.base_fields['comment'].disabled = True  # Делаем поле комментариев недоступным
 
+            # Проверка статуса для поля фото
             if obj.status == 'completed':
-                form.base_fields['photo'].required = True
+                form.base_fields['photo'].required = True  # Делаем поле фото обязательным
             else:
-                form.base_fields['photo'].required = False
+                form.base_fields['photo'].required = False  # В остальных случаях поле не обязательно
 
         return form
 

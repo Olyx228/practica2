@@ -7,6 +7,8 @@ from django.core.exceptions import ValidationError
 import re
 from .models import Request, Category,Profile
 
+from django import forms
+from .models import Request
 
 class LoginForm(forms.Form):
     username = forms.CharField(
