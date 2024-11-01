@@ -1,8 +1,12 @@
+from email.policy import default
+from secrets import choice
+
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
 from .models import Request, Category,Profile
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -29,11 +33,13 @@ class CustomUserCreationForm(forms.ModelForm):
         max_length=255,
         required=True
     )
+
     username = forms.CharField(
         label='Логин',
         max_length=150,
         required=True
     )
+
     consent = forms.BooleanField(required=True, label='Согласие на обработку персональных данных')
 
     class Meta:
@@ -72,6 +78,7 @@ class RequestForm(forms.ModelForm):
     class Meta:
         model = Request
         fields = ['title', 'description', 'category', 'photo']
+
 
     def clean_photo(self):
         photo = self.cleaned_data.get('photo')

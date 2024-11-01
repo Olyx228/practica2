@@ -56,8 +56,18 @@
 
     <button type="submit" class="btn">Зарегистрироваться</button>
     <div>Получать рассылку?
-        <input type="radio" name="RassilkaButtonRegister">Да</input>
-        <input type="radio" name="RassilkaButtonRegister">Нет</input>
+        <input type="radio" name="RassilkaButton" value="Да" id="yes">Да
+        <input type="radio" name="RassilkaButton" value="Нет" id="no">Нет
     </div>
+
+    <script>
+        const radioButtons = document.querySelectorAll('input[name="RassilkaButton"]');
+        radioButtons.forEach(button => {
+            button.addEventListener('change', function() {
+                const selectedValue = this.value;
+                localStorage.setItem('RassilkaValue', selectedValue);
+            });
+        });
+    </script>
 </form>
 {% endblock %}

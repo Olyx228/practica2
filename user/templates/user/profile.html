@@ -16,7 +16,7 @@
                     <h3>{{ request.title }}</h3>
                     <p>{{ request.description }}</p>
                     <p>Категория: {{ request.category.name }}</p>
-                    <p>Статус: {{ request.get_status_display }}</p>
+
                     <p>Создано: {{ request.created_at }}</p>
 
                     {% if request.status == 'new' %}
@@ -33,10 +33,23 @@
     {% endif %}
     </div>
     </div>
-    <div class="Rassilka">
-        <p>Получать рассылку?</p>
-        <input type="radio" name ="RassilkaButton" checked>Да</input>
-        <input type="radio" name ="RassilkaButton">Нет</input>
+    <div>Получать рассылку?
+        <input type="radio" name="RassilkaButton" value="Да" id="yes">Да
+        <input type="radio" name="RassilkaButton" value="Нет" id="no">Нет
     </div>
-</main>
+    <script>
+        window.onload = function() {
+            const savedValue = localStorage.getItem('RassilkaValue');
+            if (savedValue) {
+                const radioButtons = document.querySelectorAll('input[name="RassilkaButton"]');
+                radioButtons.forEach(button => {
+                    if (button.value === savedValue) {
+                        button.checked = true;
+                    } else {
+                        button.checked = false;
+                    }
+                });
+            }
+        };
+    </script>
 {% endblock %}

@@ -159,11 +159,11 @@ select::after {
     pointer-events: none;
 }
 .Rassilka{
-    margin-left: 40%;
+    margin-left: 43%;
     margin-top: 5%;
 }
 .Rassilka input{
-    margin-left: 3%;
+    margin-left: 5%;
 }
 .request{
     display: flex;
