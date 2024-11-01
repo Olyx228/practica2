@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <main class="form">
+    <main class="form create">
         <h1>Создать заявку</h1>
-    <form method="post" enctype="multipart/form-data" class="form-form">
+    <form method="post" enctype="multipart/form-data" class="created">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn"  >Создать заявку</button>
+        <button class="btn btn-primary" type="submit"  >Создать заявку</button>
     </form>
     <a href="{% url 'profile' %}">Назад к профилю</a>
     </main>
