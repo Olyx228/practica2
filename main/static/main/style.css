@@ -46,7 +46,9 @@ header button{
 .header-link{
     display: flex;
 }
-
+.AdminButt{
+    color: red;
+}
 
 header a:hover, header button :hover{
     color: red;

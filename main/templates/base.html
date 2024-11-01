@@ -13,7 +13,7 @@
         <div class="header-link">
             {% if request.user.is_authenticated %}
             {% if request.user.is_staff %}
-                <a href="{% url 'admin:index' %}">Перейти в админку</a>
+                <a href="{% url 'admin:index' %}" class="AdminButt">Админка</a>
             {% else %}
             {% endif %}
 
