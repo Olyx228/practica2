@@ -158,7 +158,13 @@ select::after {
     transform: translateY(-50%);
     pointer-events: none;
 }
-
+.Rassilka{
+    margin-left: 40%;
+    margin-top: 5%;
+}
+.Rassilka input{
+    margin-left: 3%;
+}
 .request{
     display: flex;
     flex-wrap: wrap;
