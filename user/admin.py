@@ -22,6 +22,10 @@ class RequestAdmin(admin.ModelAdmin):
             # Проверка статуса для поля фото
             if obj.status == 'completed':
                 form.base_fields['photo'].required = True  # Делаем поле фото обязательным
+                form.base_fields['comment'].disabled = True
+                form.base_fields['status'].disabled = True
+                form.base_fields['photo'].disabled = True
+
             else:
                 form.base_fields['photo'].required = False  # В остальных случаях поле не обязательно
 
